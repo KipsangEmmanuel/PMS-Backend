@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
+import mssql from 'mssql';
 
-dotenv.config();
+dotenv.config({path:'../../.env'});
 
 export const sqlConfig = {
-  user: process.env.DB_USER as string,
-  password: process.env.DB_PWD as string,
-  database: process.env.DB_NAME as string,
+  user: 'sa',
+  password: '@SQLserver1258631t',
+  database: 'Project_Management',
   server: 'localhost',
   pool: {
     max: 10,
@@ -17,3 +18,13 @@ export const sqlConfig = {
     trustServerCertificate: true
   }
 }
+
+async function testConnection() {
+  const pool = await mssql.connect(sqlConfig)
+
+  if(pool.connected) {
+    console.log('Database connected successfully!')
+  }
+}
+
+testConnection()
