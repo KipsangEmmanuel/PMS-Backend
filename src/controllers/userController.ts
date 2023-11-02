@@ -17,10 +17,10 @@ export const registerUser = async(req:Request, res: Response) =>{
 
         let user_id = v4()
 
-        const hashedPwd = await bcrypt.hash(password, 5)
+        const hashedPwd = await bcrypt.hash(password, 8)
         
         let result = await dbhelper.execute('registerUser', {
-            user_id,
+            user_id, 
             name,
             email,
             password: hashedPwd,
@@ -28,15 +28,13 @@ export const registerUser = async(req:Request, res: Response) =>{
         })
         console.log(result);
         
-        
-
         return res.status(200).json({
             message: 'User registered successfully'
         });
         
     } catch (error) {
         return res.status(500).json({
-            error: 'An error occurred while registering the user.'
+            error: error
         })
     }
 }
@@ -51,8 +49,6 @@ export const loginUser = async(req:Request, res: Response) =>{
         const pool = await mssql.connect(sqlConfig);
         // console.log(pool);
 
-
-        
 
         let user = await (await pool
             .request()
