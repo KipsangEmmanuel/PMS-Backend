@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import mssql from 'mssql';
 
-dotenv.config({path:'../../.env'});
+// dotenv.config({path:'../../.env'});
 
 export const sqlConfig = {
   user: 'sa',
@@ -19,7 +19,7 @@ export const sqlConfig = {
   }
 }
 
-async function testConnection() {
+export async function testConnection() {
   const pool = await mssql.connect(sqlConfig)
 
   if(pool.connected) {

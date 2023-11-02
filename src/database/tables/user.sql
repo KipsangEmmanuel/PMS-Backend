@@ -1,6 +1,10 @@
-CREATE TABLE projectManagement(
-    id VARCHAR(200),
-    fullName VARCHAR(300),
-    email VARCHAR(100),
-    password VARCHAR(200),
+CREATE TABLE Users (
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(300) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL,
+    role VARCHAR(20) Default 'user'
 )
+
+
+
+SELECT * from Users

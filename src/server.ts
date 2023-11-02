@@ -2,9 +2,14 @@ import express, { NextFunction, Request, Response, json } from 'express'
 import dotenv from 'dotenv'
 dotenv.config();
 
+import user_router from './routes/userRoute';
+
+
 const app = express()
 
 app.use(json())
+
+app.use('/user', user_router)
 
 
 app.use((error: Error, req:Request, res:Response, next:NextFunction)=>{
